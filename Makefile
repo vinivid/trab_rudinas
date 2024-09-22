@@ -1,8 +1,9 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-OBJS = main.c ls_du_encadeada.c 
+CFLAGS = -Wall -Wextra -Werror -std=c99 -fsanitize=address
+OBJS = lista_encadeada.c lista_adjacencia.c main.c
+DEPS = lista_encadeada.h lista_adjacencia.h
 
-all: $(OBJS)
+all: $(OBJS) $(DEPS)
 	$(CC) $(CFLAGS) $(OBJS) -o koala
 
 run:

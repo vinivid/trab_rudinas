@@ -28,7 +28,7 @@ lsc* construir_lsc() {
 
 	tmp->inicio = NULL;
 	tmp->fim = NULL;
-	int tamanho = 0;
+	tmp->tamanho = 0;
 
 	return tmp;
 }
@@ -54,7 +54,8 @@ int inserir_lsc(lsc* lsc, int num_cidade, int custo) {
 			}
 
 			lsc->fim->prox = novo_no;
-			
+			lsc->fim = novo_no;
+
 			lsc->fim->num_cidade = num_cidade;
 			lsc->fim->custo = custo;
 			lsc->fim->prox = NULL;
