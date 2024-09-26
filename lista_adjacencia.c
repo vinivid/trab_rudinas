@@ -51,7 +51,9 @@ int inserir_lsa(lsa* lsa, int cidade_a, int cidade_b, int custo) {
 	if (cidade_a == 0 || cidade_b == 0) {
 		return -2;
 	} else if (lsa) {
-		return inserir_lsc(lsa->container[cidade_a - 1], cidade_b, custo); 
+		inserir_lsc(lsa->container[cidade_a - 1], cidade_b, custo);
+		inserir_lsc(lsa->container[cidade_b - 1], cidade_a, custo);
+		return 0;
 	} else 
 		return -1;
 }
