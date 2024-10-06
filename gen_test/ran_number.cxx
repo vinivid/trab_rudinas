@@ -18,8 +18,9 @@ Feito por: Vinicius == Jiboia
 #include <vector>
 #include <utility>
 
+#ifndef ncheck 
 
-auto check_pos (int init, std::vector<int> perm, std::vector<std::vector<int>> adj) -> int {
+auto check_pos (int init, std::vector<int>& perm, const std::vector<std::vector<int>>& adj) -> int {
 	if (!adj[init][perm[0]]) return 1;
 
 	for (int i = 0; i < perm.size() - 1; ++i) {
@@ -32,7 +33,7 @@ auto check_pos (int init, std::vector<int> perm, std::vector<std::vector<int>> a
 	return 0;
 }
 
-auto ham (int init, int tam, std::vector<std::vector<int>> adj) -> std::pair<int, std::vector<int>> {
+auto ham (int init, int tam, const std::vector<std::vector<int>>& adj) -> std::pair<int, std::vector<int>> {
 	std::vector<int> perm;
 	std::pair<int, std::vector<int>> resp;
 
@@ -81,6 +82,8 @@ auto ham (int init, int tam, std::vector<std::vector<int>> adj) -> std::pair<int
 
 	return resp;
 }	
+
+#endif
 
 int main (int argc, char** argv) {
 	//Quantidade de cidades 
