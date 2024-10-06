@@ -1,3 +1,17 @@
+/*
+Feito por: Vinicius == Jiboia
+ Gerador de casos do rudinei
+ depois de compilar chamar com os seguintes parametros
+ arg1 é a quantidade de cidades 
+ arg2 é a distancia maxima entre duas cidades para esse caso 
+ arg3 é a probabilidade de uma cidade n ter conexão com uma outra (se for 0 vai ser completamente conectado, nao é mt bom deixar numeros proximos de 100)
+ 
+ Se vc compilar com -Dncheck vc remove a parte de ele garantir que existe um caminho possivel, gera casos mais rapidamente.
+
+ NAO É GARANTIA QUE VAI SEMPRE GERAR UM CASO VALIDO PQ EU N TESTEI MT 
+*/
+
+
 #include <random>
 #include <iostream>
 #include <stdlib.h>
