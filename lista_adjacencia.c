@@ -26,8 +26,6 @@ lsa* construir_lsa(int qtd_cidades) {
 
 	tmp->qtd_cidades = qtd_cidades;
 	
-	//Nao tratar o erro por falta de memoria porque nao seria recuperavel
-	//no caso deste programa, e melhor crashar.
 	for (int i = 0; i < qtd_cidades; ++i) {
 		tmp->container[i] = construir_lsc();
 	}
