@@ -7,11 +7,12 @@ typedef struct lsc_ lsc;
 
 //Constroi um lista encadeada sem nenhum valor especifico
 lsc* construir_lsc();
+
 //Libera o espaço alocado pela lista e os dados contidos nela.
 void destruir_lsc(lsc* lsc);
 
-/* Insere um novo nó que representa a cidade a ser inserida em uma
- conexao de cidade para cidade.
+/* Insere um novo nó que representa uma nova conexão a uma cidade qualquer, 
+ a conexão sera com a cidade de num_cidade e a distancia sera o custo.
 
  A funcao retorna 0 quando ocorre com sucesso, 1 quando foi incapaz de 
  alocar um novo nó, 2 quando a lista de entrada foi nula.
@@ -19,7 +20,7 @@ void destruir_lsc(lsc* lsc);
 int inserir_lsc(lsc* lsc, int num_cidade, int custo);
 
 /* Procura na lista a cidade do número dado e retorna o 
- custo de ir para ela a partir da cidade associada a lista.
+ custo de ir para ela.
 
  Retorna -1 caso o num_cidade não seja encontrado;
  */

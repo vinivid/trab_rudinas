@@ -4,7 +4,7 @@
 typedef struct lsa_ lsa;
 
 /*Constroi uma lista de adjacencia com a quantidade
- de cidades passada como argumento
+ de cidades passada como argumento.
 */
 lsa* construir_lsa(int qtd_cidades);
 
@@ -22,7 +22,8 @@ void destruir_lsa(lsa* lsa);
 int inserir_lsa(lsa* lsa, int cidade_a, int cidade_b, int custo);
 
 /* Retorna o custo de ir da cidade a para a cidade b. 
- 
+ Se a cidade a for igual a cidade b ele retorna zero.
+ Se a cidade a não tiver conexao com a cidade b retorna -1.
  */
 int custo_a_b_lsa(lsa* lsa, int cidade_a, int cidade_b);
 

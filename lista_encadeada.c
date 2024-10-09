@@ -43,6 +43,7 @@ void destruir_lsc(lsc* lsc) {
 	free(lsc); lsc = NULL;
 }
 
+//Sempre insere no fim da lista 
 int inserir_lsc(lsc* lsc, int num_cidade, int custo) {
 	if (lsc) {
 		if (lsc->tamanho) {
@@ -87,6 +88,7 @@ int inserir_lsc(lsc* lsc, int num_cidade, int custo) {
 	}
 }
 
+//Procura linearmente na lista encadeada pela cidade até acabar o conteudo da lista
 int cidade_numero_lsc(lsc* lsc, int num_cidade) {
 	if (lsc) {
 		no* next = lsc->inicio;
