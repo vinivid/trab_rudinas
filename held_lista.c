@@ -1,8 +1,8 @@
-#include "lista_adjacencia.h"
+#include "held_lista.h"
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "lista_encadeada.h"
+#include "held_encadeada.h"
 
 struct lsa_ {
 	lsc** container;
