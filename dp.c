@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <time.h>
 
 typedef struct mapa_ {
 	lsa* lista_mapa;
@@ -29,8 +30,12 @@ res dinamica(int tamanho, lsa* lsa);
 
 int main (void) {
 	mapa omapa = ler_entrada();
+	clock_t a, b;
+	a = clock();
 	res answ = dinamica(omapa.tam, omapa.lista_mapa);
-	printar_resposta(omapa.tam, answ, omapa.cidade_origiem);
+	b = clock();
+	printf("%d %lf\n", omapa.tam, (double)(b - a)/CLOCKS_PER_SEC);
+	//printar_resposta(omapa.tam, answ, omapa.cidade_origiem);
 }
 
 res dinamica(int tamanho, lsa *lsa) {
