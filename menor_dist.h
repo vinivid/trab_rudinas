@@ -36,11 +36,16 @@ mapa ler_entrada();
 
 /*
  Computa o caminho mais curto a partir das informações dadas por um mapa.
-
-  
+ 
+ Essa é a versão força bruta na qual ele utiliza o algoritimo de heap para 
+ permutações para calcular todos os caminhos possiveis de se fazer. Para 
+ cada permutacao calculada se computa a distacia total daquela permutacao 
+ o programa salva a permutação na qual o caminho menor e salva o caminho 
+ e a menor distancia.
  */
 res caminho_mais_curto (int tam, int* arr, lsa* lsa);
 
+//Imprime a resposta ja formatada a partir do que foi computado.
 void printar_resposta(int tam, res resposta);
 
 #endif

@@ -22,7 +22,7 @@ int inserir_lsc(lsc* lsc, int num_cidade, int custo);
 /* Procura na lista a cidade do número dado e retorna o 
  custo de ir para ela.
 
- Retorna -1 caso o num_cidade não seja encontrado;
+ Retorna um numero muito grande caso o num_cidade não seja encontrado;
  */
 int cidade_numero_lsc(lsc* lsc, int num_cidade);
 

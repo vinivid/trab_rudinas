@@ -15,16 +15,28 @@ typedef struct resposta {
 	int menor_dist;
 }res;
 
+//Le a entrada retornando o que é necessario para se calcular a menor distancia 
 mapa ler_entrada();
 void swap (int* a, int* b);
-void cpy_arr (int tam, int* a, int* b);
+//Imprime o menor caminho e o caminho em si 
 void printar_resposta(int tam, res resposta, int cidade_origem);
 
+//Checa se o menor bit esta no subconjunto 
 bool naoTaAi(int prox, int subconjunto);
+
+//Cria os subconjuntos para se inserir na lista de subconjuntos 
 void criar_subconjuntos(int conjunto, int at, int r, int n, scj* subconjuntos);
+
+//Cria todas as combinações necessarias para seperar o problema em conjuntos menores para a resolução ficar mais facil
 scj* combinacoes (int rota, int tamanho);
+
+//Encontra o melhor custo após serem feitos os calculos relacionados as distancias entre os elementos dos subconjuntos 
 int achaMelhorCusto(int tamanho, int inicio, int **memo, lsa *lsa);
+
+//Encontra a melhor rota a partir do que foi calculado com os subconjuntos 
 int* achaMelhorRota(int tamanho, int inicio, int **memo, lsa *lsa);
+
+//Calcuala a menor distancia usando o algoritimo de programação dinamica held park
 res dinamica(int tamanho, lsa* lsa);
 
 int main (void) {
@@ -58,6 +70,7 @@ res dinamica(int tamanho, lsa *lsa) {
             for(int prox = 0; prox < tamanho; prox++) {
                 if (prox == inicio || naoTaAi(prox, sub_pos_scj(combs, sub))) continue;
                 int estado = sub_pos_scj(combs, sub) ^ (1 << prox);
+				//Valor muito alto para se comparar as distancia de forma a forçar uma conexao
                 int minDist = 2147483000;
 				
                 for(int i = 0; i < tamanho; i++) {
