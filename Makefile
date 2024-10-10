@@ -13,7 +13,10 @@ otimizado: $(DH)
 	$(CC) $(CFLAGS) $(HOB) -o tsp_oti
 
 run:
-	./koala 
+	./tsp
+
+optrun:
+	./tsp_oti
 
 clean:
-	rm koala
+	rm tsp tsp_oti
