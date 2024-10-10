@@ -62,10 +62,13 @@ int inserir_lsa(lsa* lsa, int cidade_a, int cidade_b, int custo) {
 int custo_a_b_lsa(lsa* lsa, int cidade_a, int cidade_b) {
 	if (cidade_a == cidade_b) {
 		return 0;
-	} else if (lsa) {
+	} else if (cidade_a <= 0 || cidade_b <= 0) {
+		return -3;
+	} else if (lsa){
 		return cidade_numero_lsc(lsa->container[cidade_a - 1], cidade_b);
-	} else 
+	} else {
 		return -1;
+	}
 }
 
 //Retorna a quantidade de cidades contidas na lista de adjacencia

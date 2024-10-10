@@ -26,7 +26,6 @@ scj* construir_scj(int n) {
 void push_scj(scj* scj, int val) {
 	if (scj) {
 		if (scj->ultimo == scj->tamanho) {
-			printf("\n\nINSERINDO MAIS QUE MAXIMO\n\n");
 		} else {
 			scj->arr_subconjuntos[scj->ultimo] = val;
 			++scj->ultimo;
