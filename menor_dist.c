@@ -39,9 +39,9 @@ mapa ler_entrada() {
 	
 	perm_inicial[0] = cidade_final;
 	
-	int index = 1;
-	for (int i = 1; i <= n_cidades; ++i) {
-		if (i == cidade_final)
+	int index = 0;
+	for (int i = 0; i < n_cidades; ++i) {
+		if (i == cidade_final - 1)
 			continue;
 
 		perm_inicial[index] = i;
@@ -125,7 +125,7 @@ int dist_tot_perm (int tam, int* arr, lsa* lsa) {
 	for (int i = 0; i < tam - 1; ++i) {
 		int entre = custo_a_b_lsa(lsa, arr[i], arr[i + 1]);
 
-		if (entre == -1)
+		if (entre == 0)
 			return -1;
 
 		total += entre;
@@ -133,7 +133,7 @@ int dist_tot_perm (int tam, int* arr, lsa* lsa) {
 
 	int entre = custo_a_b_lsa(lsa, arr[0], arr[tam - 1]);
 
-	if (entre == -1)
+	if (entre == 0)
 		return -1;
 
 	total += entre;

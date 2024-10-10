@@ -43,6 +43,8 @@ res dinamica(int tamanho, lsa *lsa) {
                 for(int i = 0; i < tamanho; i++) {
                     if(i == inicio || i == prox || naoTaAi(i, sub_pos_scj(combs, sub)) ) continue;
 					
+					if (custo_a_b_lsa(lsa, i, prox) == 0) continue;
+
 					int novaDist = memo[i][estado] + custo_a_b_lsa(lsa, i, prox);
                     if(novaDist < minDist) { 
 						minDist = novaDist;

@@ -3,10 +3,10 @@
 
 int main(void) {
 	mapa o_mapa = ler_entrada();
-	//res o_caminho = caminho_mais_curto(o_mapa.tam, o_mapa.perm_inicial, o_mapa.lista_mapa);
-	//printar_resposta(o_mapa.tam, o_caminho);
+	res o_caminho = caminho_mais_curto(o_mapa.tam, o_mapa.perm_inicial, o_mapa.lista_mapa);
+	printar_resposta(o_mapa.tam, o_caminho);
 
-	res caminho_dinamico = dinamica(o_mapa.tam, o_mapa.lista_mapa); 
-	printar_resposta(o_mapa.tam, caminho_dinamico);
+//	res caminho_dinamico = dinamica(o_mapa.tam, o_mapa.lista_mapa); 
+	printar_resposta(o_mapa.tam, o_caminho);
 }
 
