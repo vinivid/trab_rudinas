@@ -1,0 +1,4 @@
+
+Cidade de origem: 2
+Rota: 2 - 1 - 8 - 6 - 10 - 9 - 5 - 3 - 7 - 4 - 2
+Menor distância: 34259

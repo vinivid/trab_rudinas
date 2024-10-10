@@ -100,7 +100,7 @@ int cidade_numero_lsc(lsc* lsc, int num_cidade) {
 			next = next->prox;
 		}
 
-		return 0;
+		return 1000000;
 	} else {
 		return -1;
 	}	

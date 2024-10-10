@@ -6,8 +6,8 @@
 
 typedef struct mapa_ {
 	lsa* lista_mapa;
-	int* perm_inicial;
 	int tam;
+	int cidade_origiem;
 }mapa;
 
 typedef struct resposta {
@@ -18,7 +18,7 @@ typedef struct resposta {
 mapa ler_entrada();
 void swap (int* a, int* b);
 void cpy_arr (int tam, int* a, int* b);
-void printar_resposta(int tam, res resposta);
+void printar_resposta(int tam, res resposta, int cidade_origem);
 
 bool naoTaAi(int prox, int subconjunto);
 void criar_subconjuntos(int conjunto, int at, int r, int n, scj* subconjuntos);
@@ -30,7 +30,7 @@ res dinamica(int tamanho, lsa* lsa);
 int main (void) {
 	mapa omapa = ler_entrada();
 	res answ = dinamica(omapa.tam, omapa.lista_mapa);
-	printar_resposta(omapa.tam, answ);
+	printar_resposta(omapa.tam, answ, omapa.cidade_origiem);
 }
 
 res dinamica(int tamanho, lsa *lsa) {
@@ -85,6 +85,7 @@ res dinamica(int tamanho, lsa *lsa) {
 	for (int i = 0; i < tamanho; ++i) free(memo[i]);
 	free(memo);
 
+	destruir_lsa(lsa);
 	return resposta;
 }
 
@@ -176,30 +177,27 @@ mapa ler_entrada() {
 
 		inserir_lsa(conexoes, cidade_a - 1, cidade_b - 1, distancia);
 	}
-
-	int* perm_inicial = (int *)malloc(n_cidades * sizeof(int));
 	
-	if (!perm_inicial) printf("\n\nERRO::FALHA NA ALOCACAO\n\n");
-	
-	perm_inicial[0] = cidade_final;
-	
-	int index = 0;
-	for (int i = 0; i < n_cidades; ++i) {
-		if (i == cidade_final - 1)
-			continue;
-
-		perm_inicial[index] = i;
-		++index;
-	}
-	
-	mapa res = {conexoes, perm_inicial, n_cidades};
+	mapa res = {conexoes, n_cidades, cidade_final};
 	return res;
 }
 
-void printar_resposta(int tam, res resposta) {
-	printf("\nCidade de origem: %d\n", resposta.permutacao[0]);
+void printar_resposta(int tam, res resposta, int cidade_origiem) {
+	printf("\nCidade de origem: %d\n", cidade_origiem);
 	
+	for (int i = 0; i < tam + 1; ++i) {++resposta.permutacao[i];}
+
 	printf("Rota: ");
+
+	while (resposta.permutacao[0] != cidade_origiem) {
+		int tmp = resposta.permutacao[0];
+		for (int i = 0; i < tam; i++)
+			resposta.permutacao[i] = resposta.permutacao[i + 1];
+		resposta.permutacao[tam-1] = tmp;
+	}
+
+	resposta.permutacao[tam] = cidade_origiem;
+
 	for (int i = 0; i < tam; ++i) {
 		printf("%d - ", resposta.permutacao[i]);
 	}

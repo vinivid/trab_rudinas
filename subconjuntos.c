@@ -15,7 +15,10 @@ scj* construir_scj(int n) {
 	
 	if (!tmp) {printf("\n\nERRO::FALAHA EM ALOCAR\n\n"); return NULL;}
 	
-	tmp->tamanho = n * (int)pow(2, n);
+	tmp->tamanho = (int)pow(2, n);
+
+	if (!tmp->tamanho) {printf("\n\nERRO::FALHA EM ALOCAR\n\n"); return NULL;}
+
 	tmp->arr_subconjuntos = (int *)malloc(sizeof(int) * tmp->tamanho);
 	
 	tmp->ultimo = 0;
