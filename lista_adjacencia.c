@@ -9,7 +9,6 @@ struct lsa_ {
 	int qtd_cidades;
 };
 
-//Constroi uma lista e inicializa cada um de seus componentes
 lsa* construir_lsa(int qtd_cidades) {
 	lsa* tmp = (lsa *)malloc(sizeof(lsa));
 
@@ -34,7 +33,6 @@ lsa* construir_lsa(int qtd_cidades) {
 	return tmp;
 }
 
-//Libera todos os conteudos contidos na lista de adjacencia 
 void destruir_lsa(lsa* lsa) {
 	if (lsa) {
 		for (int i = 0; i < lsa->qtd_cidades; ++i) {
@@ -46,7 +44,7 @@ void destruir_lsa(lsa* lsa) {
 	} else 
 		return;
 }
-//Insere em uma lista de adjacencia a conexão de a com b assim como b com a 
+
 int inserir_lsa(lsa* lsa, int cidade_a, int cidade_b, int custo) {
 	if (cidade_a == 0 || cidade_b == 0) {
 		return -2;
@@ -58,20 +56,15 @@ int inserir_lsa(lsa* lsa, int cidade_a, int cidade_b, int custo) {
 		return -1;
 }
 
-//Retorna a distancia entre uma cidade a e uma cidade b 
 int custo_a_b_lsa(lsa* lsa, int cidade_a, int cidade_b) {
 	if (cidade_a == cidade_b) {
 		return 0;
-	} else if (cidade_a <= 0 || cidade_b <= 0) {
-		return -3;
-	} else if (lsa){
+	} else if (lsa) {
 		return cidade_numero_lsc(lsa->container[cidade_a - 1], cidade_b);
-	} else {
+	} else 
 		return -1;
-	}
 }
 
-//Retorna a quantidade de cidades contidas na lista de adjacencia
 int qtd_cidades_lsa(lsa* lsa) {
 	if (lsa) {
 		return lsa->qtd_cidades;

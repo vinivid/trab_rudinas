@@ -4,11 +4,9 @@
 #include <stdlib.h>
 #include "lista_adjacencia.h"
 
-void swap (int* a, int* b);
 
-/*
-Copia o arr a para o array b, os dois arrays precisam ter o mesmo tamnho.
- */ 
+void swap (int* a, int* b);
+//Copia o array a no b, os dois tem de ter o mesmo tamanho
 void cpy_arr (int tam, int* a, int* b);
 int dist_tot_perm (int tam, int* arr, lsa* lsa);
 
@@ -52,6 +50,12 @@ mapa ler_entrada() {
 	return res;
 }
 
+//Algoritimo de heap para calcular todas as permutacoes possiveis de uma palavra
+//modificado um pouco para calcular as distancias.
+/*Dada uma permutacao se calcula ela se seu valor for menor que o calculado ate 
+ agora se coloca essa permutacao como a que é a mais rapida se nao só vai para 
+ a proxima.
+ */
 res caminho_mais_curto (int tam, int* arr, lsa* lsa) {
 	int* sub_arr = arr + 1;
 	int* c = (int *)malloc(tam * sizeof(int));
