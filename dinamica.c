@@ -13,8 +13,8 @@ scj* combinacoes (int rota, int tamanho);
 int achaMelhorCusto(int tamanho, int inicio, int **memo, lsa *lsa);
 int* achaMelhorRota(int tamanho, int inicio, int **memo, lsa *lsa);
 
-res dinamica(int tamanho, int *caminho, lsa *lsa) {
-    int inicio = caminho[0];
+res dinamica(int tamanho, lsa *lsa) {
+    int inicio = 0;
     
     int **memo = malloc(tamanho * sizeof(int*));
 
@@ -26,41 +26,30 @@ res dinamica(int tamanho, int *caminho, lsa *lsa) {
 
     for(int i = 0; i < tamanho; i++) {
         if(i == inicio) continue;
-        memo[i][1 << inicio | 1 << i] = custo_a_b_lsa(lsa, inicio, i + 1);
+        memo[i][1 << inicio | 1 << i] = custo_a_b_lsa(lsa, inicio, i);
     }
 
     for(int rota = 3; rota <= tamanho; rota++) {
 		scj* combs = combinacoes(rota, tamanho);
-
-		for (int i = 0; i < ultimo_scj(combs); ++i) {
-			printf("comb[%d] = %d\n", i, sub_pos_scj(combs, i));
-		}
 
         for(int sub = 0; sub < ultimo_scj(combs); ++sub){
             if(naoTaAi(inicio, sub_pos_scj(combs, sub))) continue;
 
             for(int prox = 0; prox < tamanho; prox++) {
                 if (prox == inicio || naoTaAi(prox, sub_pos_scj(combs, sub))) continue;
-				
-				printf("estado amaldiçoado %d\n\n", sub_pos_scj(combs, sub));
                 int estado = sub_pos_scj(combs, sub) ^ (1 << prox);
                 int minDist = 2147483000;
 				
-				printf("\n\nChegou aqui   1\n\n");
                 for(int i = 0; i < tamanho; i++) {
-                    if(i == inicio || naoTaAi(i, sub_pos_scj(combs, sub)) || i == prox) continue;
+                    if(i == inicio || i == prox || naoTaAi(i, sub_pos_scj(combs, sub)) ) continue;
 					
-					int novaDist = 0;
-					printf("estado %d \n", estado);
-					if (custo_a_b_lsa(lsa, i + 1, prox + 1) == -1) {
-                    	novaDist = memo[i][estado] + 0;
-					} else {
-						novaDist = memo[i][estado] + custo_a_b_lsa(lsa, i + 1, prox + 1);
+					int novaDist = memo[i][estado] + custo_a_b_lsa(lsa, i, prox);
+                    if(novaDist < minDist) { 
+						minDist = novaDist;
 					}
-                    if(novaDist < minDist) minDist = novaDist;
                 }
 				
-				printf ("prox: %d\n", prox);
+				printf("min dist inserida memo[%d][%d] = %d\n", prox, sub_pos_scj(combs, sub), minDist);
                 memo[prox][sub_pos_scj(combs, sub)] = minDist;
             }
         }
@@ -107,14 +96,13 @@ int achaMelhorCusto(int tamanho, int inicio, int **memo, lsa *lsa) {
     int estadoFinal = (1 << tamanho) - 1;
     int custoMinimo = 2147483000;
 	printf("estado final %d\n", estadoFinal);
-    for(int i = 1; i <= tamanho; i++) {
+	printf("inicio: %d\n", inicio);
+    for(int i = 0; i < tamanho; i++) {
         if(i == inicio) continue;
 		
-		printf("custo wtf %d\n\n",  custo_a_b_lsa(lsa, i, inicio));
-		
-		if (custo_a_b_lsa(lsa, i, inicio) == -1) continue;
-		printf("index do memo %d custo bizarro do memo %d\n", i - 1 ,memo[i - 1][estadoFinal]);
-        int custo = memo[i - 1][estadoFinal] + custo_a_b_lsa(lsa, i, inicio);
+		printf("custo wtf %d\n",  custo_a_b_lsa(lsa, i, inicio));
+		printf("index do memo %d custo bizarro do memo %d\n", i ,memo[i][estadoFinal]);
+        int custo = memo[i][estadoFinal] + custo_a_b_lsa(lsa, i, inicio);
         if(custo < custoMinimo) {
             custoMinimo = custo;
         }
@@ -136,9 +124,9 @@ int* achaMelhorRota(int tamanho, int inicio, int **memo, lsa *lsa) {
 
             if(indice == -1) indice = j;
 			
-			printf("dist do indice i %d e j %d e o ultimo %d\n\n", indice + 1, j + 1, ultimo + 1);
-            int distanciaPrevia = memo[indice][estado] + custo_a_b_lsa(lsa, indice + 1, ultimo);
-            int distanciaNova = memo[j][estado] + custo_a_b_lsa(lsa, j + 1, ultimo);
+			printf("dist do indice i %d e j %d e o ultimo %d\n\n", indice, j, ultimo);
+            int distanciaPrevia = memo[indice][estado] + custo_a_b_lsa(lsa, indice, ultimo);
+            int distanciaNova = memo[j][estado] + custo_a_b_lsa(lsa, j, ultimo);
 
             if(distanciaNova < distanciaPrevia) indice = j;
         }

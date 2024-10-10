@@ -48,11 +48,9 @@ void destruir_lsa(lsa* lsa) {
 }
 //Insere em uma lista de adjacencia a conexão de a com b assim como b com a 
 int inserir_lsa(lsa* lsa, int cidade_a, int cidade_b, int custo) {
-	if (cidade_a == 0 || cidade_b == 0) {
-		return -2;
-	} else if (lsa) {
-		inserir_lsc(lsa->container[cidade_a - 1], cidade_b, custo);
-		inserir_lsc(lsa->container[cidade_b - 1], cidade_a, custo);
+	 if (lsa) {
+		inserir_lsc(lsa->container[cidade_a], cidade_b, custo);
+		inserir_lsc(lsa->container[cidade_b], cidade_a, custo);
 		return 0;
 	} else 
 		return -1;
@@ -62,10 +60,8 @@ int inserir_lsa(lsa* lsa, int cidade_a, int cidade_b, int custo) {
 int custo_a_b_lsa(lsa* lsa, int cidade_a, int cidade_b) {
 	if (cidade_a == cidade_b) {
 		return 0;
-	} else if (cidade_a <= 0 || cidade_b <= 0) {
-		return -3;
 	} else if (lsa){
-		return cidade_numero_lsc(lsa->container[cidade_a - 1], cidade_b);
+		return cidade_numero_lsc(lsa->container[cidade_a], cidade_b);
 	} else {
 		return -1;
 	}

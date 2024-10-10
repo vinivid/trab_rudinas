@@ -3,6 +3,6 @@
 
 #include "menor_dist.h"
 
-res dinamica(int tamanho, int *caminho, lsa *lsa);
+res dinamica(int tamanho, lsa *lsa);
 
 #endif 

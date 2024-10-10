@@ -30,7 +30,7 @@ mapa ler_entrada() {
 
 		scanf("%d %d %d", &cidade_a, &cidade_b, &distancia);
 
-		inserir_lsa(conexoes, cidade_a, cidade_b, distancia);
+		inserir_lsa(conexoes, cidade_a - 1, cidade_b - 1, distancia);
 	}
 
 	int* perm_inicial = (int *)malloc(n_cidades * sizeof(int));
